@@ -14,5 +14,5 @@ body {
 
 /* Scrollbar minimal (webkit) */
 *::-webkit-scrollbar { width: 10px; height: 10px; }
-*::-webkit-scrollbar-thumb { background: rgba(255,255,255,.16); border-radius: 999px; }
+*::-webkit-scrollbar-thumb { background: rgba(255,255,255,.16); border-radius: 2px; }
 *::-webkit-scrollbar-track { background: rgba(255,255,255,.04); }
