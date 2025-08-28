@@ -40,7 +40,7 @@ export default function DatafieldLanding() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-xs bg-white text-black hover:bg-white/90 px-4 py-2 text-sm font-medium"
+              className="rounded-md bg-white text-black hover:bg-white/90 px-4 py-2 text-sm font-medium"
             >
               Contacto por WhatsApp
             </a>
@@ -80,7 +80,7 @@ export default function DatafieldLanding() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-10 flex items-center gap-4"
           >
-            <a href="#workflow" className="rounded-xs bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 text-sm font-medium inline-flex items-center">
+            <a href="#workflow" className="rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 text-sm font-medium inline-flex items-center">
               Ver flujo de trabajo <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </motion.div>
@@ -89,6 +89,16 @@ export default function DatafieldLanding() {
 
       {/* Industrias */}
       <SplitBand>
+        <IndustryCard
+          icon={<Building2 className="h-5 w-5" aria-hidden />}
+          title="Construcción"
+          bullets={[
+            'Ortofotos y DTM para ingeniería',
+            'Avance de obra y cubicaciones',
+            'Entrega de planos y reportes ejecutivos',
+          ]}
+        />
+
         <IndustryCard
           icon={<Mountain className="h-5 w-5" aria-hidden />}
           title="Minería"
@@ -108,15 +118,7 @@ export default function DatafieldLanding() {
             'Monitoreo térmico y detección de puntos críticos',
           ]}
         />
-        <IndustryCard
-          icon={<Building2 className="h-5 w-5" aria-hidden />}
-          title="Construcción"
-          bullets={[
-            'Ortofotos y DTM para ingeniería',
-            'Avance de obra y cubicaciones',
-            'Entrega de planos y reportes ejecutivos',
-          ]}
-        />
+        
       </SplitBand>
 
       {/* Comparativo de Motion */}
@@ -126,20 +128,6 @@ export default function DatafieldLanding() {
         {/* Descripción detallada de impacto por industria */}
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-16">
           <div className="grid lg:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              className="rounded-xs border border-white/10 bg-white/[0.03] p-6"
-            >
-              <div className="flex items-center gap-3">
-                <Mountain className="h-5 w-5 text-blue-400" aria-hidden />
-                <h3 className="text-lg font-medium">Minería</h3>
-              </div>
-              <p className="text-sm text-white/70 leading-relaxed">
-                Un levantamiento que con métodos tradicionales tarda <strong className="text-white">dos semanas</strong>, con dron se hace en apenas <strong className="text-white">3 días</strong>. La precisión en cubicaciones se mantiene dentro del margen aceptable (±3 %), con diferencias mínimas respecto al trabajo manual. Además, con LiDAR se han registrado eficiencias de hasta <strong className="text-white">6.5×</strong>.
-              </p>
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -154,6 +142,21 @@ export default function DatafieldLanding() {
               </div>
               <p className="text-sm text-white/70 leading-relaxed">
                 Los relevamientos aéreos permiten reducir hasta un <strong className="text-white">60 % el tiempo</strong> necesario para obtener datos de obra, acelerando decisiones y control de avance.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              className="rounded-xs border border-white/10 bg-white/[0.03] p-6"
+            >
+              <div className="flex items-center gap-3">
+                <Mountain className="h-5 w-5 text-blue-400" aria-hidden />
+                <h3 className="text-lg font-medium">Minería</h3>
+              </div>
+              <p className="text-sm text-white/70 leading-relaxed">
+                Un levantamiento que con métodos tradicionales tarda <strong className="text-white">dos semanas</strong>, con dron se hace en apenas <strong className="text-white">3 días</strong>. La precisión en cubicaciones se mantiene dentro del margen aceptable (±3 %), con diferencias mínimas respecto al trabajo manual. Además, con LiDAR se han registrado eficiencias de hasta <strong className="text-white">6.5×</strong>.
               </p>
             </motion.div>
 
@@ -232,14 +235,14 @@ export default function DatafieldLanding() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-xs border border-white/10 bg-white/[0.03] p-10 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-semibold">¿Listo para volar el sitio y tomar decisiones con datos?</h3>
+              <h3 className="text-2xl font-semibold">¿Listo?</h3>
               <p className="mt-2 text-white/60">Escríbenos el área, objetivo y plazo. Proponemos plan y presupuesto en 24 horas hábiles.</p>
             </div>
             <a
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-xs bg-white text-black hover:bg-white/90 px-4 py-2 text-sm font-medium"
+              className="rounded-md bg-white text-black hover:bg-white/90 px-4 py-2 text-sm font-medium"
             >
               Contacto por WhatsApp
             </a>
@@ -328,10 +331,10 @@ export default function DatafieldLanding() {
                 </label>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-4 flex justify-center">
                 <button
                   type="submit"
-                  className="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-medium py-4 px-6 rounded-xs transition-colors duration-200 flex items-center justify-center space-x-2"
+                  className="bg-zinc-900 hover:bg-zinc-800 text-white font-medium py-4 px-6 rounded-md transition-colors duration-200 flex items-center justify-center space-x-2"
                 >
                   <Send className="h-4 w-4" />
                   <span>Contacto</span>

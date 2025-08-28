@@ -34,8 +34,8 @@ export default function ComparativeMotionCharts() {
       </h2>
      
       <div className="mt-8 grid lg:grid-cols-3 gap-6 text-sm text-white/60">
-        <KPI label="Eficiencia minería (LiDAR drone)" value={`${miningEfficiencyX.toFixed(1)}×`} />
         <KPI label="Construcción más rápido" value={`-${constructionFasterPct}% tiempo`} />
+        <KPI label="Eficiencia minería (LiDAR drone)" value={`${miningEfficiencyX.toFixed(1)}×`} />
         <KPI label="Oil & Gas: ahorro de costos" value={`-${oilCostReductionPct}%`} />
       </div>
     </section>
