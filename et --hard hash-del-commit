@@ -1,0 +1,23 @@
+[33me6ad6c9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix: Update PostCSS config for ES modules compatibility
+[33m6c7fd42[m Fix: Add PostCSS config for proper TailwindCSS processing in production
+[33mbdf716e[m Fix Vercel deployment configuration
+[33m51f9785[m Fix CSS serving configuration for Vercel
+[33mfb810f2[m Add vercel.json for SPA configuration
+[33mb2deb88[m fix: remove postcss.config.js and configure CSS in vite.config.ts
+[33mb68337b[m fix: move postcss to dependencies for Vercel compatibility
+[33m6503741[m fix: use CommonJS format for postcss config
+[33mcc9adf9[m fix: update tailwindcss to correct version 3.4.15
+[33m36296aa[m fix: restore complete package.json with all dependencies
+[33med2922e[m fix: use npx vite build for Vercel compatibility
+[33ma9c4615[m fix: use npx for vite build to resolve Vercel permissions
+[33m3e1278b[m Simplify build script - use only Vite for Vercel compatibility
+[33m9521665[m Fix Vercel build - update build script for permission compatibility
+[33mafdf6bf[m Fix Vercel build - update TypeScript and Vite config
+[33mb708825[m Fix TypeScript build errors - ready for production
+[33mba5f097[m Merge branch 'main' of https://github.com/S4kred/Datafield
+[33m3112d4d[m 2da prueba
+[33m4e47279[m Update package.json
+[33m96ce352[m primera prueba
+[33m903690e[m feat: initial Datafield landing
+[33m4490d4d[m first commit: Datafield landing page
+[33m9cab3a1[m first commit
