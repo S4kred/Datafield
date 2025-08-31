@@ -30,11 +30,17 @@ export default async function handler(req, res) {
 
   try {
     // Configurar el transportador de nodemailer
+    // Cambiar las líneas 29-40 por esta configuración:
     const transporter = nodemailer.createTransporter({
-      service: 'gmail', // Puedes cambiar esto por tu proveedor
+      host: 'imap.hostinger.com',  // Cambiar de imap a smtp
+      port: 993,                   // Puerto para SSL
+      secure: true,                // true para puerto 465
       auth: {
-        user: process.env.EMAIL_USER, // Tu email
-        pass: process.env.EMAIL_PASS  // Tu contraseña de aplicación
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false
       }
     });
 

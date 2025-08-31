@@ -26,7 +26,47 @@ export default function DatafieldLanding() {
   // ✅ AGREGAR: Estados para el formulario
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
+  
+  // ✅ AGREGAR AQUÍ: Función handleSubmit
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('nombre') as string,
+      email: formData.get('email') as string,
+      message: formData.get('remark') as string,
+      organization: formData.get('organizacion') as string,
+      newsletter: formData.get('newsletter') === 'on'
+    };
+  
+    try {
+      const response = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok && result.success) {
+        setSubmitStatus('success');
+        e.currentTarget.reset();
+      } else {
+        throw new Error(result.message || 'Error al enviar el mensaje');
+      }
+    } catch (error) {
+      console.error('Error al enviar formulario:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
   return (
     <div ref={pageRef} className="min-h-screen bg-black text-white selection:bg-white/10">
       {/* Top bar */}
@@ -897,47 +937,3 @@ if (typeof window !== 'undefined') {
     }
   })();
 }
-
-
-// ✅ NUEVA IMPLEMENTACIÓN
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setSubmitStatus('idle');
-  
-  const formData = new FormData(e.currentTarget);
-  const data = {
-    name: formData.get('nombre') as string,
-    email: formData.get('email') as string,
-    message: formData.get('remark') as string,
-    organization: formData.get('organizacion') as string,
-    newsletter: formData.get('newsletter') === 'on'
-  };
-
-  try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    });
-
-    const result = await response.json();
-
-    if (response.ok && result.success) {
-      setSubmitStatus('success');
-      e.currentTarget.reset();
-      alert('¡Mensaje enviado correctamente! Nos pondremos en contacto contigo pronto.');
-    } else {
-      throw new Error(result.message || 'Error al enviar el mensaje');
-    }
-  } catch (error) {
-    console.error('Error al enviar formulario:', error);
-    setSubmitStatus('error');
-    alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctanos por WhatsApp.');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
-
