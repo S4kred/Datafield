@@ -1,1 +1,25 @@
-.vercel
+# Dependencias instaladas con npm
+node_modules/
+
+# Archivos de build generados por Vite
+dist/
+
+# Variables de entorno
+.env
+.env.*  # ignora también .env.local, .env.prod, etc.
+!.env.example  # excepto archivos de ejemplo, si los usás
+
+# Archivos temporales del compilador TypeScript
+*.tsbuildinfo
+node_modules/.tmp/
+
+# Logs y archivos de caché
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Configuración de IDE/OS
+.DS_Store
+.vscode/
+.idea/
+.vercel/
