@@ -5,6 +5,7 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Fuel, Building2, Mountain, Shield, Map as MapIcon, Ruler, Thermometer, Trees, Layers, Send, ArrowRight } from 'lucide-react';
 import ComparativeMotionCharts from "@/components/ComparativeMotionCharts";
 
+
 /* ==================== Config WhatsApp ==================== */
 const WHATSAPP_NUMBER = '5491173629944'; // Reemplazar por el número real con código de país (p.ej. 54911XXXXXXXX)
 const DEFAULT_MESSAGE = 'Hola Datafield, quiero cotizar un servicio en ...';
@@ -43,7 +44,7 @@ export default function DatafieldLanding() {
     };
   
     try {
-      const response = await fetch('http://localhost:3001/api/contact', {
+      const response = await fetch(import.meta.env.VITE_N8N_WEBHOOK_URL || '', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,13 +52,11 @@ export default function DatafieldLanding() {
         body: JSON.stringify(data)
       });
   
-      const result = await response.json();
-  
-      if (response.ok && result.success) {
+      if (response.ok) {
         setSubmitStatus('success');
         e.currentTarget.reset();
       } else {
-        throw new Error(result.message || 'Error al enviar el mensaje');
+        throw new Error('Error al enviar el mensaje');
       }
     } catch (error) {
       console.error('Error al enviar formulario:', error);
@@ -282,8 +281,8 @@ export default function DatafieldLanding() {
                 'Geocercas, redundancia y registros de vuelo',
               ]}
             />
-          </div>
-        </div>
+          </div>          
+        </div>        
       </section>
 
       {/* CTA final */}
@@ -291,8 +290,8 @@ export default function DatafieldLanding() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-xs border border-white/10 bg-white/[0.03] p-10 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-semibold">¿Listo?</h3>
-              <p className="mt-2 text-white/60">Escríbenos el área, objetivo y plazo. Proponemos plan y presupuesto en 24 horas hábiles.</p>
+              {/* <h3 className="text-2xl font-semibold">¿Listo?</h3> */}
+              <p className="text-white/60">Escríbenos el área, objetivo y plazo. Proponemos plan y presupuesto estimado en el momento.</p>
             </div>
             <a
               href={WHATSAPP_LINK}
