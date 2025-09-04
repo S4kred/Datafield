@@ -113,7 +113,7 @@ export default function DatafieldLanding() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-6 max-w-2xl text-zinc-600"
           >
-            Planificamos, volamos, procesamos. <br /> Los drones facilitan la toma de decisiones oportuna, el ahorro de costos, la mejora de la seguridad del personal y una eficiencia óptima mediante la recopilación de datos aéreos.
+            Planificamos, volamos, procesamos. <br /> Nuestras operaciones te facilitan la toma de decisiones oportuna, el ahorro de costos, la mejora de la seguridad del personal y una eficiencia óptima mediante la recopilación de datos aéreos.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -661,7 +661,7 @@ function ApplicationsServices() {
             >
               <h2 className="text-3xl font-semibold mb-4">Construcción</h2>
               <p className="text-white/60 max-w-3xl mx-auto">
-                Mejoramos eficiencia en todas las etapas de construcción con tecnología de drones y análisis de datos en tiempo real.
+                Hacemos más eficiente el proceso de construcción en todas sus etapas con tecnología de drones y análisis de datos en tiempo real.
               </p>
             </motion.div>
 
