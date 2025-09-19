@@ -4,13 +4,15 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
-    }
+  css: {
+    postcss: './postcss.config.js',
   },
-  server: {
-    port: 3000,
-    host: true
-  }
+  build: {
+    cssCodeSplit: false, // Evita dividir CSS en chunks
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
 })
