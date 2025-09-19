@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { Fuel, Building2, Mountain, Shield, Map as MapIcon, Ruler, Thermometer, Trees, Layers, Send, ArrowRight } from 'lucide-react';
+import { Fuel, Building2, Mountain, Shield, Map as MapIcon, Ruler, Thermometer, Trees, Layers, Send, ArrowRight, X } from 'lucide-react';
 import ComparativeMotionCharts from "@/components/ComparativeMotionCharts";
 
 
@@ -27,14 +27,20 @@ export default function DatafieldLanding() {
   // ✅ AGREGAR: Estados para el formulario
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   
-  // ✅ AGREGAR AQUÍ: Función handleSubmit
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+  
+    // ✅ GUARDAR referencia del formulario antes del fetch
+    const form = e.currentTarget;
+  
+    // ✅ DEBUG: Verificar qué URL se está usando
+    console.log('Webhook URL:', import.meta.env.VITE_N8N_WEBHOOK_URL);
     
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const data = {
       name: formData.get('nombre') as string,
       email: formData.get('email') as string,
@@ -42,7 +48,7 @@ export default function DatafieldLanding() {
       organization: formData.get('organizacion') as string,
       newsletter: formData.get('newsletter') === 'on'
     };
-  
+    
     try {
       const response = await fetch(import.meta.env.VITE_N8N_WEBHOOK_URL || '', {
         method: 'POST',
@@ -54,7 +60,11 @@ export default function DatafieldLanding() {
   
       if (response.ok) {
         setSubmitStatus('success');
-        e.currentTarget.reset();
+        setShowSuccessModal(true);
+        // ✅ USAR la referencia guardada y verificar que existe
+        if (form) {
+          form.reset();
+        }
       } else {
         throw new Error('Error al enviar el mensaje');
       }
@@ -415,6 +425,48 @@ export default function DatafieldLanding() {
       </section>
 
       <footer className="border-t border-white/10 py-10 text-center text-xs text-white/50 bg-black">© {new Date().getFullYear()} Datafield. VANT/SVANT para minería, petróleo y construcción.</footer>
+      
+      {/* Modal de éxito */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative"
+          >
+            <button
+              onClick={() => setShowSuccessModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            
+            <div className="text-center">
+              <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                ¡Mensaje enviado con éxito!
+              </h3>
+              
+              <p className="text-gray-600 mb-6">
+                Gracias por tu consulta. Hemos recibido tu mensaje y nos pondremos en contacto contigo a la brevedad para brindarte toda la información que necesites.
+              </p>
+              
+              <button
+                onClick={() => setShowSuccessModal(false)}
+                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-medium py-3 px-4 rounded-md transition-colors"
+              >
+                Cerrar
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
