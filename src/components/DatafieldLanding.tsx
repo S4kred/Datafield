@@ -36,9 +36,6 @@ export default function DatafieldLanding() {
   
     // ✅ GUARDAR referencia del formulario antes del fetch
     const form = e.currentTarget;
-  
-    // ✅ DEBUG: Verificar qué URL se está usando
-    console.log('Webhook URL:', import.meta.env.VITE_N8N_WEBHOOK_URL);
     
     const formData = new FormData(form);
     const data = {
