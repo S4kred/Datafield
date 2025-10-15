@@ -24,6 +24,4 @@ yarn-error.log*
 .idea/
 .vercel/
 
-# Videos grandes fuera de Git
-public/*.mp4
-public/**/*.mp4
+# (Se permite versionar videos; usar Git LFS para .mp4)
