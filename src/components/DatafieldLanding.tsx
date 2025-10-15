@@ -564,11 +564,11 @@ function Timeline() {
             <div className="pt-[56.25%]"></div>
             <video
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-              src="/video%20pagina%20datafield.mp4"
+              src="/video-pagina-datafield-640.mp4"
               autoPlay
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
               onLoadedMetadata={(e) => {
                 try {
                   e.currentTarget.currentTime = 5;
