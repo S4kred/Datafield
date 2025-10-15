@@ -25,3 +25,5 @@ yarn-error.log*
 .vercel/
 
 # (Se permite versionar videos; usar Git LFS para .mp4)
+# Ignorar el archivo original grande para no desplegarlo
+public/video pagina datafield.mp4
