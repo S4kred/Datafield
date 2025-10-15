@@ -77,20 +77,30 @@ export default function DatafieldLanding() {
     <div ref={pageRef} className="min-h-screen bg-black text-white selection:bg-white/10">
       {/* Top bar */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/50 backdrop-blur">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 grid grid-cols-8 items-center sm:flex sm:justify-between">
+          {/* Col 1: 25% (2/8) */}
+          <div className="col-span-1 flex items-center gap-2 sm:col-span-auto">
             <div className="grid place-items-center">
               <img className="h-6 w-6" src="/Isotipo@2x.png" alt="Datafield" />
             </div>
-            <span className="font-semibold tracking-wide">DATAFIELD</span>
-            <span className="ml-2 text-xs text-white/50">Operaciones aéreas de precisión</span>
+            {/* Logo para ≥ sm (tamaño controlado) */}
+            <img src="/1.svg" alt="Datafield logo" className="h-3 w-auto hidden sm:inline" />
+            {/* <span className="font-semibold tracking-wide">DATAFIELD</span> */}
+            <span className="ml-2 text-xs text-white/50 hidden sm:inline">Operaciones aéreas de precisión</span>
           </div>
-          <div className="flex items-center gap-3">
+
+          {/* Col 2: 50% (4/8) — logo centrado solo en móvil */}
+          <div className="col-span-4 grid place-items-center sm:hidden">
+            <img src="/1.svg" alt="Datafield logo" className="h-10 w-auto" />
+          </div>
+
+          {/* Col 3: 25% (2/8) */}
+          <div className="col-span-3 flex items-center justify-end gap-3 sm:col-span-auto">
             <a
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md bg-white text-black hover:bg-white/90 px-4 py-2 text-sm font-medium"
+              className="ml-4 sm:ml-0 rounded-md bg-white text-black hover:bg-white/90 px-4 py-2 text-sm font-medium"
             >
               Contacto por WhatsApp
             </a>
@@ -246,7 +256,7 @@ export default function DatafieldLanding() {
       {/* Flujo de Trabajo */}
       <section id="workflow" className="relative py-24 mt-16 rounded-xs border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader title="Flujo de trabajo" subtitle="Transparente, seguro y medible." />
+          <SectionHeader title="Flujo de trabajo" subtitle="Transparente, seguro y medible."/>
           <Timeline />
         </div>
       </section>
@@ -532,7 +542,7 @@ function Timeline() {
 
   return (
     <div ref={ref} className="relative grid lg:grid-cols-3 gap-10">
-      <div className="lg:col-span-2">
+      <div className="lg:col-span-2 flex items-center">
         <ol className="space-y-10">
           <Step index={1} title="Solicitud y definición de objetivos" desc="Recibimos el requerimiento (sitio, objetivo, plazos). Validamos alcance y proponemos entregables y formatos adecuados para tu área (ingeniería, operaciones, legal)." icon={<Send className="h-4 w-4" />} />
           <Step index={2} title="Plan de vuelo + permisos" desc="Armamos plan de vuelo, zonas, altitudes, solapes y tiempos. Gestionamos permisos, seguros y protocolos de seguridad." icon={<MapIcon className="h-4 w-4" />} />
@@ -544,9 +554,34 @@ function Timeline() {
       </div>
       <div className="lg:col-span-1 relative">
         {/* Línea de progreso vertical */}
-        <div className="sticky top-24">
-          <div className="relative h-[420px] w-1 bg-white/10 rounded-xs overflow-hidden">
+        <div className="sticky top-24 min-h-[calc(100vh-6rem)] flex items-center justify-center">
+          
+          {/* <div className="relative h-[420px] w-1 bg-white/10 rounded-xs overflow-hidden">
             <motion.div style={{ scaleY: y2 }} className="origin-top absolute left-0 top-0 h-full w-full bg-white/60" />
+          </div> */}
+
+          <div className="mt-0 relative w-full max-w-md mx-auto rounded-xs overflow-hidden">
+            <div className="pt-[56.25%]"></div>
+            <video
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              src="/video%20pagina%20datafield.mp4"
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              onLoadedMetadata={(e) => {
+                try {
+                  e.currentTarget.currentTime = 5;
+                  e.currentTarget.play().catch(() => {});
+                } catch {}
+              }}
+              onEnded={(e) => {
+                try {
+                  e.currentTarget.currentTime = 5;
+                  e.currentTarget.play().catch(() => {});
+                } catch {}
+              }}
+            />
           </div>
         </div>
       </div>
